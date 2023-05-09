@@ -19,7 +19,7 @@
 	}
 
 	$: promise.then(data => { if (score != data.score) score = data.score; });
-	$: promise.then(data => { if (level != level.level) level = data.level; });
+	$: promise.then(data => { if (level != data.level) level = data.level; });
 </script>
 
 <div class="app">
