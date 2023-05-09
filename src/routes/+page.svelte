@@ -39,7 +39,7 @@
 			</div>
 		{:then data}
 			{#if data.finished}
-				{#key data.finisged}
+				{#key data.finished}
 					<div in:fade={{ duration: 800 }} class="quest-info">
 						<h1>{#if data.score > 0}Congratulations!{:else}Sorry!{/if}</h1>
 						<h1>You finished the exercise with {data.score} points.</h1>
