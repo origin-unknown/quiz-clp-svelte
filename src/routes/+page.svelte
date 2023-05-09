@@ -24,46 +24,46 @@
 
 <div class="app">
 	<div class="wrapper">
-	<div class="hud">
-		{#key level}
-			<div>Lvl: <span in:scale={{ delay: 100, duration: 800 }}>{level}</span></div>
-		{/key}
-		{#key score}
-			<div>Pts: <span in:fade={{ delay: 100, duration: 800 }}>{score}</span></div>
-		{/key}
-	</div>
-
-	{#await promise}
-		<div class="load-screen">
-			<div class="lds-dual-ring"></div>
-		</div>
-	{:then data}
-		{#if data.finished}
-			{#key data.finisged}
-				<div in:fade={{ duration: 800 }} class="quest-info">
-					<h1>{#if data.score > 0}Congratulations!{:else}Sorry!{/if}</h1>
-					<h1>You finished the exercise with {data.score} points.</h1>
-					<button on:click={onClick}>Try Again</button>
-				</div>
+		<div class="hud">
+			{#key level}
+				<div>Lvl: <span in:scale={{ delay: 100, duration: 800 }}>{level}</span></div>
 			{/key}
-		{:else}
-			<div>
-				{#key data.question}
-					<h1 class="question" in:fade={{ duration: 800 }}>{data.question}</h1>
-				{/key}
-				{#key data.answers}
-					<form class="quest-form" on:submit|preventDefault={onSubmit}>
-						{#each Object.values(data.answers) as answer, i}
-							<button type="submit" value="{i + 1}" in:scale={{ duration: 400, delay: i*100 }}>{answer}</button>
-						{/each}
-					</form>
-				{/key}
+			{#key score}
+				<div>Pts: <span in:fade={{ delay: 100, duration: 800 }}>{score}</span></div>
+			{/key}
+		</div>
+
+		{#await promise}
+			<div class="load-screen">
+				<div class="lds-dual-ring"></div>
 			</div>
-		{/if}
-	{:catch error}
-		<p>{error.message}</p>
-	{/await}
-</div>
+		{:then data}
+			{#if data.finished}
+				{#key data.finisged}
+					<div in:fade={{ duration: 800 }} class="quest-info">
+						<h1>{#if data.score > 0}Congratulations!{:else}Sorry!{/if}</h1>
+						<h1>You finished the exercise with {data.score} points.</h1>
+						<button on:click={onClick}>Try Again</button>
+					</div>
+				{/key}
+			{:else}
+				<div>
+					{#key data.question}
+						<h1 class="question" in:fade={{ duration: 800 }}>{data.question}</h1>
+					{/key}
+					{#key data.answers}
+						<form class="quest-form" on:submit|preventDefault={onSubmit}>
+							{#each Object.values(data.answers) as answer, i}
+								<button type="submit" value="{i + 1}" in:scale={{ duration: 400, delay: i*100 }}>{answer}</button>
+							{/each}
+						</form>
+					{/key}
+				</div>
+			{/if}
+		{:catch error}
+			<p>{error.message}</p>
+		{/await}
+	</div>
 </div>
 
 <style>
